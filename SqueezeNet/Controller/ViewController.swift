@@ -14,6 +14,7 @@ import SwiftyJSON
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var label: UILabel!
     let imagePicker = UIImagePickerController()
     let wikipediaURl = "https://en.wikipedia.org/w/api.php"
 
@@ -79,8 +80,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         "redirects" : "1",
         ]
         AF.request(wikipediaURl, parameters: parameters).responseJSON { response in
-            if case .success(_) = response.result {
-                print(response)
+            if let safeData = response.data {
+                let json: JSON = JSON(safeData)
+                let pageId = json["query"]["pageids"][0].stringValue
+                let extract = json["query"]["pages"][pageId]["extract"].stringValue
+                self.label.text = extract
             }
         }
     }
