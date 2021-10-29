@@ -23,7 +23,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
-        imagePicker.sourceType = .photoLibrary
+        imagePicker.sourceType = .camera
     }
     
     //MARK:- UIImagePickerControllerDelegate Methods
@@ -89,7 +89,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 let imageUrl = json["query"]["pages"][pageId]["thumbnail"]["source"].stringValue
                 self.imageView.sd_setImage(with: URL(string: imageUrl))
                 self.label.text = extract
-                print(json)
+                //print(json)
             }
         }
     }
