@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		91F72A592F8B33DCF41201E3 /* Pods_SqueezeNet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90BBFEF48DB79298774BAE89 /* Pods_SqueezeNet.framework */; };
 		A88536B1272B183A009DB02D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88536B0272B183A009DB02D /* AppDelegate.swift */; };
 		A88536B3272B183A009DB02D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88536B2272B183A009DB02D /* SceneDelegate.swift */; };
 		A88536B5272B183A009DB02D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88536B4272B183A009DB02D /* ViewController.swift */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B976C77F329D56A11B2BA3E /* Pods-SqueezeNet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SqueezeNet.debug.xcconfig"; path = "Target Support Files/Pods-SqueezeNet/Pods-SqueezeNet.debug.xcconfig"; sourceTree = "<group>"; };
+		90BBFEF48DB79298774BAE89 /* Pods_SqueezeNet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SqueezeNet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A88536AD272B183A009DB02D /* SqueezeNet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SqueezeNet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A88536B0272B183A009DB02D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A88536B2272B183A009DB02D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +29,7 @@
 		A88536BC272B183C009DB02D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A88536BE272B183C009DB02D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A88536C4272B185A009DB02D /* SqueezeNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SqueezeNet.mlmodel; sourceTree = "<group>"; };
+		DF538EFBAC9E1278D2E3C84A /* Pods-SqueezeNet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SqueezeNet.release.xcconfig"; path = "Target Support Files/Pods-SqueezeNet/Pods-SqueezeNet.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +37,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91F72A592F8B33DCF41201E3 /* Pods_SqueezeNet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01BCA2DA837B74115A9E16EE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7B976C77F329D56A11B2BA3E /* Pods-SqueezeNet.debug.xcconfig */,
+				DF538EFBAC9E1278D2E3C84A /* Pods-SqueezeNet.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		1CC75C23699449B4D2CE68AE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				90BBFEF48DB79298774BAE89 /* Pods_SqueezeNet.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A88536A4272B183A009DB02D = {
 			isa = PBXGroup;
 			children = (
 				A88536AF272B183A009DB02D /* SqueezeNet */,
 				A88536AE272B183A009DB02D /* Products */,
+				01BCA2DA837B74115A9E16EE /* Pods */,
+				1CC75C23699449B4D2CE68AE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,9 +118,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A88536C1272B183C009DB02D /* Build configuration list for PBXNativeTarget "SqueezeNet" */;
 			buildPhases = (
+				F6840B46F4D447FBA939FB0F /* [CP] Check Pods Manifest.lock */,
 				A88536A9272B183A009DB02D /* Sources */,
 				A88536AA272B183A009DB02D /* Frameworks */,
 				A88536AB272B183A009DB02D /* Resources */,
+				EB3C2858FF0242248F545DE0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -150,6 +177,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EB3C2858FF0242248F545DE0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SqueezeNet/Pods-SqueezeNet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SqueezeNet/Pods-SqueezeNet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SqueezeNet/Pods-SqueezeNet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F6840B46F4D447FBA939FB0F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SqueezeNet-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A88536A9272B183A009DB02D /* Sources */ = {
@@ -303,6 +372,7 @@
 		};
 		A88536C2272B183C009DB02D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B976C77F329D56A11B2BA3E /* Pods-SqueezeNet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -322,6 +392,7 @@
 		};
 		A88536C3272B183C009DB02D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF538EFBAC9E1278D2E3C84A /* Pods-SqueezeNet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

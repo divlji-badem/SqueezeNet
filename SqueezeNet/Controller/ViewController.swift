@@ -8,12 +8,15 @@
 import UIKit
 import Vision
 import CoreML
+import Alamofire
+import SwiftyJSON
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
     @IBOutlet weak var imageView: UIImageView!
     let imagePicker = UIImagePickerController()
-    
+    let wikipediaURl = "https://en.wikipedia.org/w/api.php"
+
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
@@ -23,12 +26,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     //MARK:- UIImagePickerControllerDelegate Methods
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
-            imageView.image = pickedImage
+            
             guard let ciImage = CIImage(image: pickedImage) else {
                 fatalError("Could not convert UIimage into CIImage.")
             }
             detect(image: ciImage)
+            imageView.image = pickedImage
         }
         imagePicker.dismiss(animated: true, completion: nil)
     }
@@ -43,9 +48,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 fatalError("Model failed to process image")
             }
             if let firstResult = results.first {
-                self.navigationItem.title = firstResult.identifier + " " + String(format: "%.2f", firstResult.confidence)
+                let identifier = firstResult.identifier
+                self.navigationItem.title = identifier.capitalized + " " + String(format: "%.2f", firstResult.confidence)
+                self.infoRequest(title: identifier.components(separatedBy: ",")[0])
             }
-           print(results)
+           //print(results)
         }
         
         let handler = VNImageRequestHandler(ciImage: image)
@@ -57,8 +64,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     @IBAction func cameraButtonTapped(_ sender: UIBarButtonItem) {
-        print("cameraButtonTapped")
         present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func infoRequest(title: String){
+        let parameters : [String:String] = [
+        "format" : "json",
+        "action" : "query",
+        "prop" : "extracts",
+        "exintro" : "",
+        "explaintext" : "",
+        "titles" : title,
+        "indexpageids" : "",
+        "redirects" : "1",
+        ]
+        AF.request(wikipediaURl, parameters: parameters).responseJSON { response in
+            if case .success(_) = response.result {
+                print(response)
+            }
+        }
     }
 }
 
