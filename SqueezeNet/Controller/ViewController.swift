@@ -10,6 +10,7 @@ import Vision
 import CoreML
 import Alamofire
 import SwiftyJSON
+import SDWebImage
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
@@ -34,7 +35,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 fatalError("Could not convert UIimage into CIImage.")
             }
             detect(image: ciImage)
-            imageView.image = pickedImage
+            // imageView.image = pickedImage
         }
         imagePicker.dismiss(animated: true, completion: nil)
     }
@@ -70,21 +71,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func infoRequest(title: String){
         let parameters : [String:String] = [
-        "format" : "json",
-        "action" : "query",
-        "prop" : "extracts",
-        "exintro" : "",
-        "explaintext" : "",
-        "titles" : title,
-        "indexpageids" : "",
-        "redirects" : "1",
+            "format" : "json",
+            "action" : "query",
+            "prop" : "extracts|pageimages",
+            "exintro" : "",
+            "explaintext" : "",
+            "titles" : title,
+            "indexpageids" : "",
+            "redirects" : "1",
+            "pithumbsize" : "500",
         ]
         AF.request(wikipediaURl, parameters: parameters).responseJSON { response in
             if let safeData = response.data {
                 let json: JSON = JSON(safeData)
                 let pageId = json["query"]["pageids"][0].stringValue
                 let extract = json["query"]["pages"][pageId]["extract"].stringValue
+                let imageUrl = json["query"]["pages"][pageId]["thumbnail"]["source"].stringValue
+                self.imageView.sd_setImage(with: URL(string: imageUrl))
                 self.label.text = extract
+                print(json)
             }
         }
     }
